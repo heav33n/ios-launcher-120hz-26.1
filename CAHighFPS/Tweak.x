@@ -8,6 +8,11 @@
 #import <dlfcn.h>
 //#import <CydiaSubstrate/CydiaSubstrate.h>
 
+%ctor {
+    NSLog(@"[CAHighFPS] loaded");
+    fprintf(stderr, "[CAHighFPS] loaded\n");
+}
+
 %hook CADynamicFrameRateSource
 
 -(void)setPaused:(BOOL)arg1 {
@@ -49,7 +54,8 @@
 
 %hook CADisplayLink
 -(void)setPaused:(BOOL)arg1 {
-    //
+    NSLog(@"[CAHighFPS] setPaused:%d", arg1);
+    %orig;
 }
 
 -(BOOL)isPaused {
@@ -60,15 +66,6 @@
     %orig(1);
     if ([self respondsToSelector:@selector(setPreferredFramesPerSecond:)])
         self.preferredFramesPerSecond = 120;
-}
-
-- (void)addToRunLoop:(NSRunLoop *)runloop forMode:(NSRunLoopMode)mode {
-    if ([self respondsToSelector:@selector(setPreferredFramesPerSecond:)]) {
-        self.preferredFramesPerSecond = 120;
-    } else if (@available(iOS 15.0, *)) {
-        self.preferredFrameRateRange = CAFrameRateRangeMake(120, 120, 120);
-    }
-    %orig();
 }
 
 - (void)setPreferredFrameRateRange:(CAFrameRateRange)range {
