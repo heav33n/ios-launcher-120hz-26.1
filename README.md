@@ -1,5 +1,5 @@
 # Geode iOS Launcher
-Manages installing and launching **Geometry Dash** with **Geode** for iOS.
+Manages installing and launching **Geometry Dash** with **Geode** for iOS. This fork tries to provide support for ProMotion devices.
 
 <p align="center">
 	<img src="/screenshots/thumbnail.png" />
