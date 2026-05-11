@@ -526,6 +526,7 @@
 			return AppLog(@"GD not verified! Not installing!");
 		if (LOCAL_BUILD == 1) {
 			AppLog(@"Downloading locally");
+			[self.progressBar setHidden:NO];
 			NSURLSession* session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:self delegateQueue:nil];
 			downloadTask = [session downloadTaskWithURL:[NSURL URLWithString:@LOCAL_URL]];
 			[downloadTask resume];
