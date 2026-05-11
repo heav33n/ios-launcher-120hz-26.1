@@ -24,8 +24,8 @@
 #include <mach-o/dyld.h>
 #include <objc/runtime.h>
 
-#define LOCAL_BUILD 0
-#define LOCAL_URL "http://192.168.1.22:3000/Geometry-2.208.ipa"
+#define LOCAL_BUILD 1
+#define LOCAL_URL "http://192.168.5.87:8000/GD.ipa"
 
 @interface RootViewController ()
 
